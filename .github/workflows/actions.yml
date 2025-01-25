@@ -6,5 +6,12 @@ jobs:
       image: public.ecr.aws/lambda/java:11.2024.06.05.12-arm64
     steps:
 #      - uses: actions/checkout@v4
-      - run: yum install -y curl
+      - run: yum install -y curl # curl, gitのインストールによって証明書がインストールされることでテストの偽陰性が高まる
       - run: curl -v api.sandbox.push.apple.com:443
+  openssl:
+    runs-on: ubuntu-24.04-arm
+    container:
+      image: public.ecr.aws/lambda/java:11.2024.06.05.12-arm64
+    steps:
+      - run: yum install -y openssl
+      - run: openssl s_client -connect api.sandbox.push.apple.com:443
