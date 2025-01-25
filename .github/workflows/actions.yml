@@ -1,0 +1,10 @@
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-24.04-arm
+    container:
+      image: public.ecr.aws/lambda/java:11.2024.06.05.12-arm64
+    steps:
+      - uses: actions/checkout@v4
+      - run: yum install -y curl
+      - run: curl -v api.sandbox.push.apple.com:443
