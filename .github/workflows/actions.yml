@@ -26,12 +26,10 @@ jobs:
     container:
       image: public.ecr.aws/lambda/java:11.2024.06.05.12-arm64
     steps:
-      - run: cat /etc/ssl/certs/ca-certificates
+      - run: cat /etc/pki/tls/certs/ca-bundle.crt
   dpkg:
     runs-on: ubuntu-24.04-arm
     container:
       image: public.ecr.aws/lambda/java:11.2024.06.05.12-arm64
     steps:
-      - run: dpkg
-      - run: dpkg --list
-      - run: dpkg --list | grep ca-certificates
+      - run: yum whatprovides */ca-bundle.crt
