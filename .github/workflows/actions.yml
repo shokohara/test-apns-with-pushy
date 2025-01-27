@@ -14,10 +14,16 @@ jobs:
     steps:
       - run: yum install -y openssl
       - run: openssl s_client -connect api.sandbox.push.apple.com:443
-  pure:
+  pure-java:
     runs-on: ubuntu-24.04-arm
     container:
       image: public.ecr.aws/lambda/java:11.2024.06.05.12-arm64
     steps:
       - run: cat /var/lang/lib/security/cacerts
       - run: keytool -list -keystore /var/lang/lib/security/cacerts
+  pure:
+    runs-on: ubuntu-24.04-arm
+    container:
+      image: public.ecr.aws/lambda/java:11.2024.06.05.12-arm64
+    steps:
+      - run: cat /etc/ssl/certs/ca-certificates
