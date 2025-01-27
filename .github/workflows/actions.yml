@@ -19,5 +19,5 @@ jobs:
     container:
       image: public.ecr.aws/lambda/java:11.2024.06.05.12-arm64
     steps:
-      - run: ls /var/lang/lib/security/cacerts
+      - run: cat /var/lang/lib/security/cacerts
       - run: keytool -list -keystore /var/lang/lib/security/cacerts
