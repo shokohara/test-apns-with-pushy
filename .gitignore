@@ -1,4 +1,3 @@
 /.bsp
 /.scala-build
-project/
-/target
+target/
