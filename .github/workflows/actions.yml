@@ -34,3 +34,10 @@ jobs:
       image: public.ecr.aws/lambda/java:11.2024.06.05.12-arm64
     steps:
       - run: yum whatprovides */ca-bundle.crt
+  sbt:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: sbt/setup-sbt@v1
+      - run: sbt Docker/publishLocal
+      - run: docker run --rm test-apns-with-pushy:0.1.0-SNAPSHOT
